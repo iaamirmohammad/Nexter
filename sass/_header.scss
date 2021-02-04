@@ -1,0 +1,65 @@
+.header{
+    background-color: $color-grey-dark-1;
+    grid-column: full-start / col-end 6;
+    background-image: linear-gradient(rgba($color-secondary, .93), rgba($color-secondary, .93)),
+    url(../img/hero.jpeg);
+    background-size: cover;
+    background-position: center;
+    padding: 8rem;
+    padding-top: 4rem;
+
+    display: grid;
+    //need this header 80% of vh,so need 1st row to occupy all empty space(1fr) & all other rows sized auto. 
+    grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+    grid-template-columns: minmax(min-content, max-content); //max content horizontally , & min-content(min content possible vertically)
+    grid-row-gap: 1.5rem;
+    justify-content: center;  //complete grid horizontally
+
+    @media only screen and (max-width: $bp-medium){
+        grid-column: 1 / -1;
+    }
+
+    @media only screen and (max-width: $bp-small){
+        padding: 5rem;
+    }
+
+    &__logo{
+        height: 3rem;
+        justify-self: center;
+    }
+    &__btn{
+        align-self: start; //vertically at top of grid cell.
+        justify-self: start; //horizontally to left.
+
+    }
+    &__seenon-text{
+        display: grid;
+        grid-template-columns: 1fr max-content 1fr;
+        grid-column-gap: 1.5rem;
+        align-items: center;
+
+        font-size: 1.6rem;
+        color: $color-grey-light-2;
+
+        &::before,
+        &::after{
+            content: "";
+            height: 1px;
+            display: block;
+            background-color: currentColor; //takes current text color and sets here.
+        }
+    }
+    &__seenon-logos{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        grid-column-gap: 3rem;
+        justify-items: center;  //center inside grid cell
+        align-items: center;
+
+        img{
+            max-height: 2.5rem; //max height is this, but also less then that.
+            max-width: 100%; //max width is this, but also less then that.
+            filter: brightness(70%); //100% is default. below 100% imge gets lighter 
+        }
+    }
+}

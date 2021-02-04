@@ -1,0 +1,47 @@
+.features{
+    // background-color: $color-grey-light-2;
+    grid-column: center-start / center-end; //center the feature section(in middle)
+    margin: 15rem 0;
+
+    @supports(display: grid){
+        display: grid;  //make this grid item to a grid container
+        //make cols of this small grid automatically be to the cols of parent grid(page layout), not passible, 
+        //so manually create new cols for grid container.
+
+        // grid-template-columns: repeat(3, 1fr);
+        // To make responsive whitout using media queries
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); //between 250px and 1fr(add many tracks as possible)
+        // grid-template-rows: auto auto; //no need for that, it happens automatically
+        grid-gap: 6rem;
+        align-items: start;
+    }
+}
+.feature{ //grid item becomes a grid container
+
+    // If we don't have grid, then older css is
+    float: left;
+    width: 33.3333%;
+    margin-bottom: 2rem;
+    //if this is true then floats, dispaly: inline-block, table cell, & vertcal allignment.
+    @supports(display: grid){
+        width: auto;
+        margin-bottom: 0;
+    }
+
+    display: grid;
+        grid-template-columns: min-content 1fr; //min-content(width of content)
+        // don't need to define rows , they are auto size of content.
+        grid-row-gap: 1.5rem;
+        grid-column-gap: 2.5rem;
+
+    &__icon{
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+        grid-row: 1 / span 2;  // 1 / -1 works with explicit grid
+        transform: translateY(-1rem);  //move icon a bit top.
+    }
+    &__text{
+        font-size: 1.7rem;
+    }
+}
